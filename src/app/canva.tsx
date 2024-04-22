@@ -31,11 +31,11 @@ export default function Home() {
   return (
     <div>
         <div className="absolute bg-black w-full h-full">
-            aaa
+            <button className="bg-slate-300 text-white" onClick={takePhoto}>Take Photo</button>
         </div>
       <video ref={referencia} autoPlay></video>
       <canvas ref={referenciaCanva} className="w-28 h-28"></canvas>
-      <button onClick={takePhoto}>Take Photo</button>
+      
     </div>
   );
 }

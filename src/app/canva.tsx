@@ -8,6 +8,7 @@ export default function Home() {
         if (typeof window !== 'undefined') {
             navigator.mediaDevices.getUserMedia({ video: true })
                 .then(stream => {
+                    console.log(stream)
                     if (referencia.current) {
                         referencia.current.srcObject = stream;
                         referencia.current.play();
@@ -30,8 +31,8 @@ export default function Home() {
 
     return (
         <div>
-            <video ref={referencia} autoPlay></video>
-            <div className="absolute bg-black w-full h-full">
+            <video className="" ref={referencia} autoPlay></video>
+            <div className="top-0 absolute  bg-black w-full h-full">
                 <button className="bg-slate-300 text-white" onClick={takePhoto}>Take Photo</button>
                 <canvas ref={referenciaCanva} className="w-28 h-28"></canvas>
             </div>

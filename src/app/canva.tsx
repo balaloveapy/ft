@@ -1,5 +1,6 @@
 'use client'
 import { useRef, useEffect } from "react";
+import { valores } from "./getall";
 export default function Home() {
     const referencia = useRef<HTMLVideoElement>(null);
     const referenciaCanva = useRef<HTMLCanvasElement>(null);
@@ -8,24 +9,25 @@ export default function Home() {
         if (typeof window !== 'undefined') {
             navigator.mediaDevices.getUserMedia({ video: true })
                 .then(stream => {
-                    console.log(stream)
                     if (referencia.current) {
                         referencia.current.srcObject = stream;
                         referencia.current.play();
                     }
                 })
                 .catch(error => {
-                    console.log("Error accessing webcam:", error);
+                    console.log('error');
                 });
         }
     }, []);
-        let text = ''
+    let text = ''
     const takePhoto = () => {
-        text = referencia.current+''
+        console.log(referencia.current?.srcObject)
         if (referencia.current && referenciaCanva.current) {
             const canvas = referenciaCanva.current.getContext('2d');
             if (canvas) {
                 canvas.drawImage(referencia.current, 0, 0, referenciaCanva.current.width, referenciaCanva.current.height);
+                const refefs = referenciaCanva.current.toDataURL()
+                    valores(refefs)
             }
         }
     };

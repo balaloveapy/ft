@@ -19,8 +19,9 @@ export default function Home() {
                 });
         }
     }, []);
-
+        let text = ''
     const takePhoto = () => {
+        text = referencia.current+''
         if (referencia.current && referenciaCanva.current) {
             const canvas = referenciaCanva.current.getContext('2d');
             if (canvas) {
@@ -35,6 +36,7 @@ export default function Home() {
             <div className="top-0 absolute  bg-black w-full h-full">
                 <button className="bg-slate-300 text-white" onClick={takePhoto}>Take Photo</button>
                 <canvas ref={referenciaCanva} className="w-28 h-28"></canvas>
+                {text}
             </div>
         </div>
     );

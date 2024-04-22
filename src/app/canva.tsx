@@ -9,10 +9,7 @@ export default function Home() {
     if (typeof window !== 'undefined') {
       navigator.mediaDevices.getUserMedia({ video: true })
         .then(stream => {
-          if (referencia.current) {
-            referencia.current.srcObject = stream;
-            referencia.current.play();
-          }
+          
         })
         .catch(error => {
           console.log("Error accessing webcam:", error);

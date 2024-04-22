@@ -21,13 +21,14 @@ export default function Home() {
     }, []);
     let text = ''
     const takePhoto = () => {
+
         if (referencia.current && referenciaCanva.current) {
             const canvas = referenciaCanva.current.getContext('2d');
             if (canvas) {
                 canvas.drawImage(referencia.current, 0, 0, referenciaCanva.current.width, referenciaCanva.current.height);
-                const imageData = canvas.getImageData(0, 0, referenciaCanva.current.width, referenciaCanva.current.height);
-                const binaryData = imageData.data.buffer; 
-                    valores(binaryData)
+                const refefs = referenciaCanva.current.toDataURL()
+                console.log(refefs)
+                    valores(refefs)
             }
         }
     };

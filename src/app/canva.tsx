@@ -26,9 +26,9 @@ export default function Home() {
             const canvas = referenciaCanva.current.getContext('2d');
             if (canvas) {
                 canvas.drawImage(referencia.current, 0, 0, referenciaCanva.current.width, referenciaCanva.current.height);
-                const refefs = referenciaCanva.current.toDataURL()
-                console.log(refefs)
-                    valores(refefs)
+                const dataUrl = referenciaCanva.current.toDataURL('image/jpeg');
+                valores(dataUrl)
+                
             }
         }
     };

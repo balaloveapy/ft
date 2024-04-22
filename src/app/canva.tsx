@@ -28,7 +28,7 @@ export default function Home() {
 
   return (
     <div>
-      <video ref={referencia} autoPlay></video>
+      
       <canvas ref={referenciaCanva} className="w-28 h-28"></canvas>
       <button onClick={takePhoto}>Take Photo</button>
     </div>

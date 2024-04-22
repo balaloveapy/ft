@@ -15,14 +15,14 @@ export default function Canva() {
   function click() {
     const canva = referenciaCanva.current!.getContext('2d')
     if (canva && referencia.current) {
-      canva.drawImage(referencia.current, 0, 0)
+      canva.drawImage(referencia.current, 0, 0,referencia.current.width,referencia.current.height)
 
     }
   }
     return (
       <div>
         <video ref={referencia}></video>
-        <canvas ref={referenciaCanva} className="w-28 h-28"></canvas>
+        <canvas ref={referenciaCanva}></canvas>
         <button onClick={click}>tirar foto</button>
       </div>
     );

@@ -1,6 +1,5 @@
 'use client'
 import { useRef, useEffect } from "react";
-
 export default function Home() {
   const referencia = useRef<HTMLVideoElement>(null);
   const referenciaCanva = useRef<HTMLCanvasElement>(null);
@@ -9,7 +8,10 @@ export default function Home() {
     if (typeof window !== 'undefined') {
       navigator.mediaDevices.getUserMedia({ video: true })
         .then(stream => {
-          
+          if (referencia.current) {
+            referencia.current.srcObject = stream;
+            referencia.current.play();
+          }
         })
         .catch(error => {
           console.log("Error accessing webcam:", error);
@@ -28,7 +30,10 @@ export default function Home() {
 
   return (
     <div>
-      
+        <div className="absolute bg-black w-full h-full">
+            aaa
+        </div>
+      <video ref={referencia} autoPlay></video>
       <canvas ref={referenciaCanva} className="w-28 h-28"></canvas>
       <button onClick={takePhoto}>Take Photo</button>
     </div>

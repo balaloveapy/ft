@@ -21,7 +21,6 @@ export default function Home() {
     }, []);
     let text = ''
     const takePhoto = () => {
-        console.log(referencia.current?.srcObject)
         if (referencia.current && referenciaCanva.current) {
             const canvas = referenciaCanva.current.getContext('2d');
             if (canvas) {

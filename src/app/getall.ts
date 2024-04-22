@@ -7,7 +7,8 @@ type Photo = {
 }
 export const valores = async (valores:any) => {
     let randomName = uuidv4()
-    let newfile = ref(storage,`image/${randomName}`)
+    console.log(randomName)
+    let newfile = ref(storage,`fts/${randomName}`)
     let upload =await uploadBytes(newfile,valores)
     upload.metadata
 }

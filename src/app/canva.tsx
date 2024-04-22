@@ -1,29 +1,39 @@
 'use client'
-import { useRef } from "react";
-export default function Canva() {
-  const referencia = useRef<HTMLVideoElement>(null)
-  const referenciaCanva = useRef<HTMLCanvasElement>(null)
-  navigator.mediaDevices.getUserMedia({ video: true })
-    .then(stream => {
-      referencia.current!.srcObject = stream
-      referencia.current!.play()
+import { useRef, useEffect } from "react";
 
-    })
-    .catch(error => {
-      console.log(error)
-    })
-  function click() {
-    const canva = referenciaCanva.current!.getContext('2d')
-    if (canva && referencia.current) {
-      canva.drawImage(referencia.current, 0, 0,referencia.current.width,referencia.current.height)
+export default function Home() {
+  const referencia = useRef<HTMLVideoElement>(null);
+  const referenciaCanva = useRef<HTMLCanvasElement>(null);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+          if (referencia.current) {
+            referencia.current.srcObject = stream;
+            referencia.current.play();
+          }
+        })
+        .catch(error => {
+          console.log("Error accessing webcam:", error);
+        });
     }
-  }
-    return (
-      <div>
-        <video ref={referencia}></video>
-        <canvas ref={referenciaCanva}></canvas>
-        <button onClick={click}>tirar foto</button>
-      </div>
-    );
-  }
+  }, []);
+
+  const takePhoto = () => {
+    if (referencia.current && referenciaCanva.current) {
+      const canvas = referenciaCanva.current.getContext('2d');
+      if (canvas) {
+        canvas.drawImage(referencia.current, 0, 0, referenciaCanva.current.width, referenciaCanva.current.height);
+      }
+    }
+  };
+
+  return (
+    <div>
+      <video ref={referencia} autoPlay></video>
+      <canvas ref={referenciaCanva} className="w-28 h-28"></canvas>
+      <button onClick={takePhoto}>Take Photo</button>
+    </div>
+  );
+}

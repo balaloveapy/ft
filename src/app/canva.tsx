@@ -54,7 +54,7 @@ export default function Home() {
 
       <canvas ref={referenciaCanva}></canvas>
       <video className="w-full h-full" ref={referencia} autoPlay></video>
-      <div className="top-0 absolute w-full h-full">
+      <div className="top-0 bg-white absolute w-full h-full">
         <header className=" shadow-sm py-2 box-shadow text-sm sm:text-xl text-[#ff3859] ">
           <div className="flex justify-between items-center sm:max-w-3xl xl:max-w-5xl max-w-sm mx-auto">
             <div className="font-bold">
